@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+<!-------------------------------------------------------------------------------------------------------------------->
+        <!-- NEEDED FOR BOOTSTRAP - TRY NOT TO CHANGE -->
+
+          <!-- SCRIPTS -->
+          <!-- JQuery -->
+          <script type="text/javascript" link href="{{ url_for('static', filename= 'js/jquery-3.4.1.min.js') }}"></script>
+          <!-- Bootstrap tooltips -->
+          <script type="text/javascript" link href="{{ url_for('static', filename= 'js/popper.min.js') }}"></script>
+          <!-- Bootstrap core JavaScript -->
+          <script type="text/javascript" link href="{{ url_for('static', filename= 'js/bootstrap.min.js') }}"></script>
+          <!-- MDB core JavaScript -->
+          <script type="text/javascript" link href="{{ url_for('static', filename= 'js/mdb.min.js') }}"></script>
+
+  <body>
+    {% block content3 %}
+    {% endblock %}
+  </body>
+
+</html>

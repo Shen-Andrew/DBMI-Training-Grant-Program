@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1
+    style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+    UCSD Grant Applications Department Administration Page
+  </h1>
+
+  <body>
+    <div class="card">
+      <!---Card Header---->
+        <h5 class="card-header white-text blue text-center py-4">
+            <strong> Department Input Form </strong>
+        </h5>
+
+        <div class="card-body px-lg-5 pt-0">
+            <form class="md-form" style="color: #757575;">
+
+
+              <!---Faculty Department---->
+              <div>
+                <select class="mdb-select md-form mb-4 initialized" id="select">
+                  <option value="" disabled selected> Department </option>
+                {% for department_name in departments %}
+                  <option value="{{department_name}}"> {{department_name}} </option>
+                {% endfor %}
+                </select>
+
+              </div>
+
+              <!---Faculty Research Interest---->
+              <label for="input1"> Participating Department or Program </label>
+              <input type="text" id="input1" class="form-control" placeholder="">
+
+              <!---Faculty Training Role---->
+              <label for="input2"> Total Faculty </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Participating Faculty </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Predoctorates </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Predoctorates Supported by any HHS Training Award </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Predoctorates with Participating Faculty </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> TGE Predoctorates Supported by this Training Grant(Renewals/Revisions) </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Predoctorates Supported by this Training Grant (R90 Only Renewals/Revisions) </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Postdoctorates </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Postdoctorates Supported by any HHS Training Award </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Total Postdoctorates with Participating Faculty </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> TGE Postdoctorates Supported by this Training Grant(Renewals/Revisions) </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+              <label for="input2"> Postdoctorates Supported by this Training Grant (R90 Only Renewals/Revisions) </label>
+              <input type="text" id="input2" class="form-control" placeholder="">
+
+
+
+              <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit"> Submit </button>
+
+            </form>
+        </div> <!--- /card-body px-lg-5 pt-0 ---->
+
+
+    </div> <!--- /class = "card" ---->
+<!-------------------------------------------------------------------------------------------------------------------->
+            <!-- NEEDED FOR BOOTSTRAP/JAVASCRIPT - DO NOT TO CHANGE -->
+
+              <!-- SCRIPTS -->
+              <!-- JQuery -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/jquery-3.4.1.min.js') }}"></script>
+              <!-- Bootstrap tooltips -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/popper.min.js') }}"></script>
+              <!-- Bootstrap core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/bootstrap.min.js') }}"></script>
+              <!-- MDB core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/mdb.min.js') }}"></script>
+</body>
+{% endblock %}

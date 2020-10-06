@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1
+    style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+    UCSD Grant Applications PI/PD Page
+  </h1>
+
+<h4> Faculty on Grant "{{grant_title}}" </h4>
+
+<!--- Automatically Generates Clickable Links for All the Faculty On Grant --->
+  <div>
+    Grant Information<br/>
+    Grant Title: {{grant_info[0]["grant_title"]}}<br/>
+    Award Number: {{grant_info[0]["award_number"]}}<br/>
+    Start Date: {{grant_info[0]["project_start_date"]}}<br/>
+    End Date: {{grant_info[0]["project_end_date"]}}<br/>
+    PI: {{grant_info[0]["pdpi"]}}<br/>
+    <br/><br/>
+  </div>
+
+  <div>
+    <b>View or Edit Existing Faculty on Grant</b>
+    <br/><br/>
+    <form action='/input_form_faculty' method='POST'>
+        {% for faculty in faculty_list %}
+          <input type='radio' value='{{faculty}}' name='faculty'/>{{faculty}}</br>
+        {% endfor %}
+      <input type="submit" value="Select"/>
+    </form>
+  </div>
+
+<br/><br/>
+<b>Or</b>
+<br/><br/>
+
+  <div>
+    <b>Add New Faculty Member to Grant</b><br/>
+    <form action='/input_form_new_faculty' method='POST'>
+      <input type='text' value='' name='new_member_name'/>
+      <input type="submit" value="Enter"/>
+    </form>
+    <br/><br/>
+  </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1
+    style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+    Table 2 - Faculty Information
+  </h1>
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Table 2</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="static/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/table1_styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-- Table 2 HTML WITH MDBOOTSTRAP -->
+
+  <div>
+    <br></br>
+
+
+    <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fas fa-plus fa-2x"
+    aria-hidden="true"></i></a></span>
+      <div id="table" class="table-editable">
+        <table class="table table-bordered table-responsive-md text-center">
+          <thead class="text-center font-weight-bold" style="background-color:#cccccc;">
+            <tr>
+              <th>Name</th>
+              <th>Degree(s)</th>
+              <th>Rank</th>
+              <th>Primary Department or Program</th>
+              <th>Research Interest</th>
+              <th>Training Role</th>
+              <th>Predoctorates In Training</th>
+              <th>Predoctorates Graduated</th>
+              <th>Predoctorates Continued In Research or Related Careers </th>
+              <th>Postdoctorates In Training</th>
+              <th>Predoctorates Completed Training</th>
+              <th>Postdoctorates Continued In Research or Related Careers </th>
+              <th></th>
+              </tr>
+          </thead>
+
+          <tbody>
+
+          {% for row in data %}
+            <tr>
+              <td class="pt-3-half" contenteditable="true">{{row["Name"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Degree"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Rank"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Dept"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Interest"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Role"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Predocs_Training"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Predocs_Graduated"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Predocs_Continued_Research"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Postdocs_Training"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Postdocs_Graduated"]}}</td>
+              <td class="pt-3-half" contenteditable="true">{{row["Postdocs_Continued_Research"]}}</td>
+
+              </td>
+              <td>
+                <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">
+                Remove</button></span>
+              </td>
+            </tr>
+
+          {% endfor %}
+          </tbody>
+        </table>
+       </div>
+
+  </div>
+
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-- TABLE 2 - JAVA SCRIPT -->
+
+  <script>
+    const $tableID = $('#table');
+    const $BTN = $('#export-btn');
+    const $EXPORT = $('#export');
+
+    const newTr = `
+   <tr class="hide">
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half" contenteditable="true"></td>
+      <td class="pt-3-half">
+
+      </td>
+     <td>
+       <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button></span>
+     </td>
+   </tr>`;
+
+    $('.table-add').on('click', 'i', () => {
+
+      const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+
+      if ($tableID.find('tbody tr').length === 0) {
+
+        $('tbody').append(newTr);
+      }
+
+      $tableID.find('table').append($clone);
+    });
+
+    $tableID.on('click', '.table-remove', function () {
+
+      $(this).parents('tr').detach();
+    });
+
+    $tableID.on('click', '.table-up', function () {
+
+      const $row = $(this).parents('tr');
+
+      if ($row.index() === 1) {
+        return;
+      }
+
+      $row.prev().before($row.get(0));
+    });
+
+    $tableID.on('click', '.table-down', function () {
+
+      const $row = $(this).parents('tr');
+      $row.next().after($row.get(0));
+    });
+
+    // A few jQuery helpers for exporting only
+    jQuery.fn.pop = [].pop;
+    jQuery.fn.shift = [].shift;
+
+    $BTN.on('click', () => {
+
+      const $rows = $tableID.find('tr:not(:hidden)');
+      const headers = [];
+      const data = [];
+
+      // Get the headers (add special header logic here)
+      $($rows.shift()).find('th:not(:empty)').each(function () {
+
+        headers.push($(this).text().toLowerCase());
+      });
+
+      // Turn all existing rows into a loopable array
+      $rows.each(function () {
+        const $td = $(this).find('td');
+        const h = {};
+
+        // Use the headers from earlier to name our hash keys
+        headers.forEach((header, i) => {
+
+          h[header] = $td.eq(i).text();
+        });
+
+        data.push(h);
+      });
+
+      // Output the result
+      $EXPORT.text(JSON.stringify(data));
+    });
+  </script>
+
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-- NEEDED FOR BOOTSTRAP - TRY NOT TO CHANGE -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+
+  </body>
+
+
+{% endblock %}

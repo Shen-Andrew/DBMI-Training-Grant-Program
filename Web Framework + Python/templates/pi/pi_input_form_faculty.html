@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+{% block content %}
+
+<!---Header---->
+<h1
+  style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+  UCSD Grant Applications Faculty Page
+</h1>
+
+  <body>
+    <div class="card">
+      <!---Card Header---->
+        <h5 class="card-header blue white-text text-center py-4">
+            <strong> Faculty Input Form for {{faculty_member}} </strong>
+        </h5>
+
+        <div class="card-body px-lg-5 pt-0">
+            <form class="md-form" style="color: #757575;">
+
+              <!---Faculty Name---->
+              <label for="input"> Name </label>
+              <input type="text" id="input" class="form-control" placeholder="" value = "{{faculty_member}}">
+
+              <!---Faculty Degree---->
+              <div>
+                <select class ="mdb-select md-form mb-4 initilaized" id="select">
+                  <option value="" disabled selected> {{faculty_info["degree"]}} </option>
+                  <option value="1"> PhD </option>
+                  <option value="2"> MD </option>
+                  <option value="3"> JD </option>
+                  <option value="4"> MBBS </option>
+                  <option value="5"> Pharm D </option>
+                  <option value="6"> RN </option>
+                  <option value="7"> DO </option>
+                </select>
+              </div>
+
+              <!---Faculty Rank---->
+              <div>
+                <select class="mdb-select md-form mb-4 initialized" id="select">
+                  <option value="" disabled selected> {{faculty_info["rank"]}} </option>
+                  <option value="1"> Assistant Professor </option>
+                  <option value="2"> Associate Dean for Informatics </option>
+                  <option value="3"> Associate Dean of Academics </option>
+                  <option value="4"> Associate Professor </option>
+                  <option value="5"> Associate Professor of Law </option>
+                  <option value="6"> Chair </option>
+                  <option value="7"> Chief Information Officer </option>
+                  <option value="8"> Consulting Professor </option>
+                  <option value="9"> Division Chief </option>
+                  <option value="10"> Lecturer </option>
+                  <option value="11"> Professor </option>
+                </select>
+              </div>
+
+              <!---Faculty Department---->
+              <div>
+                <select class="mdb-select md-form mb-4 initialized" id="select">
+                  <option value="" disabled selected> {{department_name}} </option>
+                {% for department_name in departments %}
+                  <option value="{{department_name}}"> {{department_name}} </option>
+                {% endfor %}
+                </select>
+
+              </div>
+
+              <!---Faculty Research Interest---->
+              <label for="input1"> Research Interest </label>
+              <input type="text" id="input1" class="form-control" placeholder="" value="{{faculty_info["interest"]}}">
+
+              <!---Faculty Training Role---->
+              <label for="input2"> Training Role </label>
+              <input type="text" id="input2" class="form-control" placeholder="" value="{{faculty_info["role"]}}">
+
+
+
+              <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit"> Submit </button>
+
+            </form>
+        </div> <!--- /card-body px-lg-5 pt-0 ---->
+
+        <div>
+          Trainee List
+          <br/><br/>
+          <a href="http://localhost:5000/input_form_trainee">Add New Trainee</a>
+          <br/><br/>
+          <form action='/input_form_trainee' method='POST'>
+              {% for trainee in trainees %}
+                <input type='radio' value='{{trainee}}' name='trainee'/>{{trainee}}</br>
+              {% endfor %}
+            <input type="submit" value="Select"/>
+          </form>
+          <br/>
+        </div>
+
+
+        <div>
+          Current Research Support
+          <br/><br/>
+          <a href="http://localhost:5000/input_form_reserach_support">Add New Research Support</a>
+          <br/><br/>
+
+        </div>
+
+
+    </div> <!--- /class = "card" ---->
+<!-------------------------------------------------------------------------------------------------------------------->
+            <!-- NEEDED FOR BOOTSTRAP/JAVASCRIPT - DO NOT TO CHANGE -->
+
+              <!-- SCRIPTS -->
+              <!-- JQuery -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/jquery-3.4.1.min.js') }}"></script>
+              <!-- Bootstrap tooltips -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/popper.min.js') }}"></script>
+              <!-- Bootstrap core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/bootstrap.min.js') }}"></script>
+              <!-- MDB core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/mdb.min.js') }}"></script>
+</body>
+{% endblock %}

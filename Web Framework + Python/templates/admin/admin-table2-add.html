@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1
+    style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+    Table 2 - Add or Edit Faculty Member
+  </h1>
+
+  <u><b>Add New Faculty Member</b></u>
+
+  <form action="http://localhost:5000/Admin-Table2/send_to_database" method="post">
+    <td> Name: </br></td><td><input type="text" name="Name" value={{member["Name"]}}></td> </br>
+    <td> Degree(s): </br></td><td><input type="text" name="Degree" value="{{member["Degree"]}}"></td> </br>
+    <td> Rank: </br></td><td><input type="text" name="Rank" value="{{member["Rank"]}}"></td> </br>
+    <td> Primary Department or Program: </br></td><td><input type="text" name="Department" value="{{member["Department"]}}"></td> </br>
+    <td> Training Role: </br></td><td><input type="text" name="Role" value="{{member["Role"]}}"></td> </br>
+    <td> Research Interest: </br></td><td><input type="text" name="Interest" value="{{member["Interest"]}}"></td> </br>
+
+    </br></br>
+
+    <td> Predoctorates In Training: </br></td><td><input type="text" name="Predocs Training" value="{{member["Predocs Training"]}}"></td> </br>
+    <td> Predoctorates Graduated: </br></td><td><input type="text" name="Predocs Graduated" value="{{member["Predocs Graduated"]}}"></td> </br>
+    <td> Predoctorates Continued In Research or Related Careers: </br></td><td><input type="text" name="Predocs Continued Research" value="{{member["Predocs Continued Research"]}}"></td> </br>
+    <td> Postdoctorates In Training: </br></td><td><input type="text" name="Postdocs Training" value="{{member["Postdocs Training"]}}"></td> </br>
+    <td> Postdoctorates Graduated: </br></td><td><input type="text" name="Postdocs Graduated" value="{{member["Postdocs Graduated"]}}"></td> </br>
+    <td> Postdoctorates Continued In Research or Related Careers: </br></td><td><input type="text" name="Postdocs Continued Research" value="{{member["Postdocs Continued Research"]}}"></td> </br>
+
+    <input type="submit" value = "SUBMIT"/>
+  </form>
+
+
+  <body>
+
+  </body>
+
+{% endblock %}

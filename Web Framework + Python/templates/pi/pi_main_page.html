@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h1
+    style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+    UCSD Grant Applications Program Director Page
+  </h1>
+
+  <br>
+  <center>
+    <h5> Select an Existing Grant to Renew </h5>
+    <br>
+      <form action='/grant_faculty_list' method='post'>
+        <select name="grant_title">
+            {% for grant in grant_titles %}
+              <option value="{{grant}}">{{grant}}</option>
+            {% endfor %}
+        </select>
+  <br>
+  <br>
+    <input type="submit" value="Submit"/>
+  </center>
+      </form>
+{% endblock %}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+{% extends "layout.html" %}
+{% block content %}
+
+<!---Header---->
+<h1
+  style="color:#163060; font-weight: bold; font-family:helvetica; font-size: xx-large; text-align:center;">
+  UCSD Grant Applications Faculty Page
+</h1>
+
+  <body>
+    <div class="card">
+      <!---Card Header---->
+        <h5 class="card-header blue white-text text-center py-4">
+            <strong> Add Trainee for {{faculty_member}} </strong>
+        </h5>
+
+        <div class="card-body px-lg-5 pt-0">
+            <form class="md-form" style="color: #757575;">
+
+
+              <!---Begin to Add Faculty Trainee Information---->
+              <h6><b> Add Trainee Information Below </b></h6>
+              <br>
+
+              <!---Trainee Student ID---->
+              <label for="input"> Trainee ID </label>
+              <input type="text" id="input" class="form-control" placeholder="">
+
+              <!---Trainee Name---->
+              <label for="input"> Trainee Name </label>
+              <input type="text" id="input" class="form-control" placeholder="">
+
+              <!---Training Period---->
+              <label for="input"> Project Start Date </label>
+              <input type="text" id="input" class="form-control" placeholder="">
+
+              <label for="input"> Project End Date </label>
+              <input type="text" id="input" class="form-control" placeholder="">
+
+              <!---Checkbox Selection for Trainee Information---->
+              <h6><b> Select All That Apply to this Trainee </b></h6>
+              <br>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Predoctorate in Training </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Predoctorate that has Graduated </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Predoctorate that has Continued in Research or Related Career </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Postdoctorate in Training </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Postdoctorate that has Graduated </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Postdoctorate that has Continued in Research or Related Career </label>
+              </div>
+
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="checkbox">
+                <label class="form-check-label" for="checkbox"> Supported by any HHS Training Award </label>
+              </div>
+
+              <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit"> Submit </button>
+
+            </form>
+        </div> <!--- /card-body px-lg-5 pt-0 ---->
+    </div> <!--- /class = "card" ---->
+<!-------------------------------------------------------------------------------------------------------------------->
+            <!-- NEEDED FOR BOOTSTRAP/JAVASCRIPT - DO NOT TO CHANGE -->
+
+              <!-- SCRIPTS -->
+              <!-- JQuery -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/jquery-3.4.1.min.js') }}"></script>
+              <!-- Bootstrap tooltips -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/popper.min.js') }}"></script>
+              <!-- Bootstrap core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/bootstrap.min.js') }}"></script>
+              <!-- MDB core JavaScript -->
+              <script type="text/javascript" link href="{{ url_for('static', filename= 'js/mdb.min.js') }}"></script>
+</body>
+{% endblock %}
